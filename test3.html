@@ -28,6 +28,18 @@
           width: 300px;
           height: 300px;
       }
+      
+      .equalizer span{
+          
+        vertical-align: bottom;
+        display: inline-block;
+        font-size: 0;
+        line-height: 0;
+        background: pink;
+        border-top: 2px solid red;
+                  
+          
+      }
     </style>
     <script>
       function setEqualizer(selector, timeout, colWidth) {
@@ -39,7 +51,6 @@
           var len = $(selector).width();
           
           $(selector).css({
-              verticalAlign: 'bottom',
               lineHeight: len + 'px'
           });
           
@@ -51,15 +62,7 @@
           for (var i = 0; i < cols.length; i++) {
               var span = $('<span/>').appendTo(selector);
               span.css({
-                  verticalAlign: 'bottom',
-                  display: 'inline-block',
-      
-                  fontSize: 0,
-                  lineHeight: 0,
-      
-                  width: colWidth,
-                  background: 'pink',
-                  borderTop: '2px solid red'
+                  width: colWidth
               });
           }
       
@@ -71,10 +74,10 @@
           var len = $(selector).width();
           var halflen = Math.round(len/2);
           //отследим как они сходятся в почти линию посередине
-          var timeoutsmall = Math.round(timeout*0.4);
+          var timeoutsmall = Math.round(timeout*0.5);
           
           $(selector + ' span').each(function (i) {
-            $(this).animate({height: Math.round(len * Math.random())}, timeoutsmall,'linear')
+            $(this).animate({height: len * Math.random()}, timeoutsmall,'linear')
           });
         
           $(selector + ' span').animate(
@@ -88,9 +91,9 @@
       }
       
       window.onload = function () {
-             setEqualizer('#eq_1 .equalizer', 1000, 2);
-          //   setEqualizer('#eq_2 .equalizer', 1000, 2);
-          //   setEqualizer('#eq_3 .equalizer', 1000, 2);
+             //setEqualizer('#eq_1 .equalizer', 1000, 2);
+             setEqualizer('#eq_2 .equalizer', 1000, 2);
+             //setEqualizer('#eq_3 .equalizer', 1000, 2);
       }
     </script>
   </head>
