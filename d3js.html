@@ -46,18 +46,18 @@
                 circles.transition()
                 .ease("exp")
                 .delay(function(d, i) { return i / 10 * 4000; })
-                .duration(3000)
+                .duration(2000)
                 .attr('fill', 'yellow')
                 .attr("cx", function(d) {return 20 + Math.round(doc_w * Math.random())})
                 .attr("cy", function(d) {return 20 + Math.round(doc_h * Math.random())})
                 .transition()
                 .ease("exp")
-                .duration(3000)
+                .duration(2000)
                 .attr('fill', 'red')
                 .attr("cx", function(d) {return 20 + Math.round(doc_w * Math.random())})
                 .attr("cy", function(d) {return 20 + Math.round(doc_h * Math.random())})
                 
-            },6000);
+            },4000);
             
             circles.on("mouseover", function(d, i){
                 
@@ -65,7 +65,7 @@
                    
                      some.transition()
                      .ease("bounce") 
-                     .duration(3000)
+                     .duration(100)
                      .attr('fill', 'blue')
                      .attr("cx",  20 )
                      .attr("cy", 20);
