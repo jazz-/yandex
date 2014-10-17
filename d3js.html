@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO d3js</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+        <script>
+        window.onload = function () {    
+            // set screen params
+            //var doc_h=600;
+            //var doc_w=800;
+            var doc_h =  $(window).height();
+            var doc_w =  $(window).width();
+
+            var data = [
+                        {"x": 111, "y": 111},
+                        {"x": 0, "y": 0},
+                        {"x": 0, "y": 0},
+                        {"x": 0, "y": 0},
+                        {"x": 0, "y": 0},
+                        {"x": 0, "y": 0},
+                        {"x": 0, "y": 0},
+                        {"x": 0, "y": 0}
+                        
+            ];
+
+
+            var svg = d3.select('body').append('svg')
+
+            svg.selectAll("circle")
+                .data(data)
+              .enter().append("circle")
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; })
+                .attr('fill', 'red')
+                .attr("r", 10)
+
+            ;
+
+            var circles = svg.selectAll('circle');
+            
+            setInterval(function(){
+                
+                circles.transition()
+                .ease("exp")
+                .delay(function(d, i) { return i / 10 * 4000; })
+                .duration(3000)
+                .attr('fill', 'yellow')
+                .attr("cx", function(d) {return 20 + Math.round(doc_w * Math.random())})
+                .attr("cy", function(d) {return 20 + Math.round(doc_h * Math.random())})
+                .transition()
+                .ease("exp")
+                .duration(3000)
+                .attr('fill', 'red')
+                .attr("cx", function(d) {return 20 + Math.round(doc_w * Math.random())})
+                .attr("cy", function(d) {return 20 + Math.round(doc_h * Math.random())})
+                
+            },6000);
+            
+            circles.on("mouseover", function(d, i){
+                
+                   var some = d3.select(this);
+                   
+                     some.transition()
+                     .ease("bounce") 
+                     .duration(3000)
+                     .attr('fill', 'blue')
+                     .attr("cx",  20 )
+                     .attr("cy", 20);
+                    
+                });
+                
+           
+        }
+
+
+          </script>
+          <style>
+              svg {
+                width: 100%;
+                min-height: 100%;
+              }
+           </style>   
+              
+              
+    </head>
+    <body>
+        <div>TODO d3js</div>
+    </body>
+</html>
